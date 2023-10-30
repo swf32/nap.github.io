@@ -339,24 +339,6 @@
 				}
 			});
 		}
-		$('body').css('visibility', '');
-		Telegram.WebApp.MainButton
-				.setText('CLOSE WEBVIEW')
-				.show()
-				.onClick(function () {
-					webviewClose();
-				});
-
-		function toggleMainButton(el) {
-			var mainButton = Telegram.WebApp.MainButton;
-			if (mainButton.isVisible) {
-				mainButton.hide();
-				el.innerHTML = 'Show Main Button';
-			} else {
-				mainButton.show();
-				el.innerHTML = 'Hide Main Button';
-			}
-		}
 
 		function round(val, d) {
 			var k = Math.pow(10, d || 0);
