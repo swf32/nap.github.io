@@ -178,6 +178,7 @@
 </head>
 <body>
 <section>
+    <a id="regular_link" href="index.html">Вернуться назад</a>
     <button id="main_btn" onclick="sendMessage('');">Send «Hello, World!»</button>
     <button id="with_webview_btn" onclick="sendMessage('', true);">
         Send «Hello, World!» with inline webview button
@@ -188,7 +189,6 @@
     </div>
     <p>Test links:</p>
     <ul>
-        <li><a id="regular_link" href="?nextpage=1">Regular link #1</a> (opens inside webview)</li>
         <li><a href="https://telegram.org/" target="_blank">target="_blank" link</a> (opens outside
             webview)
         </li>
