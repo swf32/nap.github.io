@@ -36,11 +36,12 @@
 			display: flex;
 			width: 100%;
 			padding-left: 12px;
+			padding-right: 12px;
 			box-sizing: border-box;
 			overflow-x: scroll;
+			gap: 8px;
 		}
 		.stories {
-			margin-right: 8px;
 			min-width: 104px;
 			height: 108px;
 			border-radius: 16px;
@@ -260,6 +261,10 @@
 			// Удаление подложки после завершения анимации исчезновения
 			setTimeout(function() {
 				overlay.remove();
+				setTimeout(function () {
+					const lottie = document.getElementById('lottie-animation');
+					lottie.remove();
+				}, 100);
 			}, 300);
 		}, 900);
 	</script>
