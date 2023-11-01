@@ -10,6 +10,7 @@
 	<meta name="MobileOptimized" content="176"/>
 	<meta name="HandheldFriendly" content="True"/>
 	<meta name="robots" content="noindex,nofollow"/>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.14/lottie.min.js"></script>
 	<script src="https://telegram.org/js/telegram-web-app.js?1"></script>
 	<script>
@@ -46,6 +47,8 @@
 			height: 108px;
 			border-radius: 16px;
 			background: var(--tg-theme-button-color, #62ba46);
+			opacity: 0;
+			transition: opacity 300ms;
 		}
 		.stories_block::-webkit-scrollbar {
 			display: none;
@@ -56,7 +59,9 @@
 			height: 108px;
 			align-self: stretch;
 			border-radius: 16px;
-			background: var(--tg-theme-secondary-bg-color, #ffffff)
+			background: var(--tg-theme-secondary-bg-color, #ffffff);
+			opacity: 0;
+			transition: opacity 300ms;
 		}
 
 		a {
@@ -82,7 +87,7 @@
 			pointer-events: none;
 		}
 
-		button.close_btn {
+		button .close_btn {
 			/*position: fixed;*/
 			position: absolute;
 			left: 0;
@@ -221,26 +226,53 @@
 	<div class="main_module"></div>
 	<div class="stories_block">
 			<div class="stories">
-
+				Stories 1
 			</div>
 			<div class="stories">
-
+				Stories 2
 			</div>
 			<div class="stories">
-
+				Stories 3
 			</div>
 			<div class="stories">
-
+				Stories 4
+			</div>
+			<div class="stories">
+				Stories 5
+			</div>
+			<div class="stories">
+				Stories 6
+			</div>
+			<div class="stories">
+				Stories 7
 			</div>
 	</div>
 	<script>
 		const tele = window.Telegram.WebApp;
 		tele.expand();
 
-		window.TelegramWebviewProxy.postEvent('web_app_trigger_haptic_feedback', JSON.stringify({
-			type: 'notification',
-			notification_type: 'success'
-		}));
+		$(document).ready(function() {
+			// Задержка в 1000 мс
+			setTimeout(function() {
+				// Выбираем все блоки с классами main_module и stories
+				let elements = $('.main_module, .stories');
+
+				// Применяем функцию к каждому элементу с индексом
+				elements.each(function(index, element) {
+					// Задержка в 50 мс для каждого следующего элемента
+					setTimeout(function() {
+						$(element).css('opacity', '1');
+					}, index * 75);
+				});
+			}, 1000);
+		});
+
+		setTimeout(function() {
+			window.TelegramWebviewProxy.postEvent('web_app_trigger_haptic_feedback', JSON.stringify({
+				type: 'notification',
+				notification_type: 'success'
+			}));
+		}, 200);
 
 		let animation = lottie.loadAnimation({
 			container: document.getElementById('lottie-animation'), // ID контейнера для анимации
