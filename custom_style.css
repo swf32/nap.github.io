@@ -49,13 +49,13 @@
     transition: opacity 300ms, margin-top 30ms;
     overflow: hidden;
     box-shadow: 0px 0px 24px 0px rgba(var(--tg-theme-bg-color, #ffffff), 0.50) inset;
+    font-family: 'NeutralFace-Bold';
 }
 .main_module span {
     color: var(--tg-theme-text-color, #000000);
     text-align: right;
     leading-trim: both;
     text-edge: cap;
-    font-family: 'NeutralFace-Bold';
     font-size: 14px;
     font-style: normal;
     position: absolute;
