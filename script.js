@@ -32,7 +32,7 @@ setTimeout(function() {
         type: 'notification',
         notification_type: 'success'
     }));
-}, 200);
+}, 500);
 
 let animation = lottie.loadAnimation({
     container: document.getElementById('lottie-animation'), // ID контейнера для анимации

@@ -1,6 +1,12 @@
+@font-face {
+    font-family: 'NeutralFace-Bold';
+    src: url('/content/NeutralFace-Bold.woff') format('woff');
+    /* Дополнительные свойства шрифта, если необходимо */
+}
+
 body {
+    font-family: 'NeutralFace-Bold';
     gap: 12px;
-    font-family: sans-serif;
     background-color: var(--tg-theme-bg-color, #EFEFF3);
     color: var(--tg-theme-text-color, #222222);
     font-size: 16px;
