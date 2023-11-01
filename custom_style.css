@@ -41,6 +41,8 @@
     background: var(--tg-theme-secondary-bg-color, #ffffff);
     opacity: 0;
     transition: opacity 300ms, margin-top 300ms;
+    overflow: hidden;
+    box-shadow: 0px 0px 24px 0px rgba(var(--tg-theme-bg-color, #ffffff), 0.50) inset;
 }
 
 .main_logo {
@@ -50,6 +52,13 @@
     width: 70px;
     height: 85px;
     fill: var(--tg-theme-text-color, #000000);
+}
+
+.main_grid {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .stories_img {
