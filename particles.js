@@ -1,6 +1,6 @@
 const settings = {
     spawnPoint: { x: 100, y: 54 },
-    spawnRadius: 55,
+    spawnRadius: 100,
     maxOpacityDuration: 1000,
     maxSize: 65,
     minSize: 5,
@@ -9,7 +9,7 @@ const settings = {
     maxOpacity: 0.75,
     minOpacity: 0.2,
     opacityDeviation: 0.2,
-    particleLife: 5000,
+    particleLife: 10000,
     fadeOutDuration: 300,
     endSizeRatio: 0,
 };
