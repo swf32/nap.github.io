@@ -2,19 +2,29 @@ const tele = window.Telegram.WebApp;
 tele.expand();
 
 $(document).ready(function() {
+    // Выбираем все блоки с классами main_module и stories
+    let elements = $('.main_module, .stories');
+
+    // Сохраняем исходные значения margin-top
+    elements.each(function(index, element) {
+        let originalMarginTop = parseInt($(element).css('margin-top'));
+        $(element).data('original-margin-top', originalMarginTop);
+        $(element).css('margin-top', originalMarginTop + 24 + 'px');
+    });
+
     // Задержка в 1000 мс
     setTimeout(function() {
-        // Выбираем все блоки с классами main_module и stories
-        let elements = $('.main_module, .stories');
-
         // Применяем функцию к каждому элементу с индексом
         elements.each(function(index, element) {
             // Задержка в 50 мс для каждого следующего элемента
             setTimeout(function() {
-                $(element).css('opacity', '1');
+                $(element).css({
+                    'opacity': '1',
+                    'margin-top': $(element).data('original-margin-top') + 'px'
+                });
             }, index * 75);
         });
-    }, 1000);
+    }, 900);
 });
 
 setTimeout(function() {

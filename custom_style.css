@@ -25,7 +25,7 @@
     border-radius: 16px;
     background: var(--tg-theme-button-color, #50a8eb);
     opacity: 0;
-    transition: opacity 300ms;
+    transition: opacity 300ms, margin-top 300ms;
     overflow: hidden;
 }
 .stories_block::-webkit-scrollbar {
@@ -33,18 +33,19 @@
 }
 .main_module {
     flex-shrink: 0;
+    position: relative;
     margin: 12px;
     height: 108px;
     align-self: stretch;
     border-radius: 16px;
     background: var(--tg-theme-secondary-bg-color, #ffffff);
     opacity: 0;
-    transition: opacity 300ms;
+    transition: opacity 300ms, margin-top 300ms;
 }
 
 .main_logo {
     position: absolute;
-    top: 24px;
+    top: 12px;
     left: 64px;
     width: 70px;
     height: 85px;
@@ -55,4 +56,20 @@
     width: 104px;
     height: 108px;
     display: block;
+}
+
+#particles_container {
+    width: 100%;
+    height: 108px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    opacity: 30%;
+    will-change: transform, opacity;
+    fill: var(--tg-theme-text-color, #000000);
 }
