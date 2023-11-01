@@ -11,7 +11,7 @@ const settings = {
     opacityDeviation: 0.2,
     particleLife: 5000,
     fadeOutDuration: 300,
-    endSizeRatio: 0,
+    endSizeRatio: 0.35,
 };
 
 function getRandomArbitrary(min, max) {
@@ -79,4 +79,4 @@ function createParticle() {
     };
 }
 
-setInterval(createParticle, 200);
+setInterval(createParticle, 300);
