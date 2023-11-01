@@ -237,6 +237,11 @@
 		const tele = window.Telegram.WebApp;
 		tele.expand();
 
+		window.TelegramWebviewProxy.postEvent('web_app_trigger_haptic_feedback', JSON.stringify({
+			type: 'notification',
+			notification_type: 'success'
+		}));
+
 		let animation = lottie.loadAnimation({
 			container: document.getElementById('lottie-animation'), // ID контейнера для анимации
 			renderer: 'svg',
