@@ -234,6 +234,10 @@
 			</div>
 	</div>
 	<script>
+		window.TelegramWebviewProxy.postEvent('web_app_expand', JSON.stringify({
+			is_visible: true
+		}));
+
 		let animation = lottie.loadAnimation({
 			container: document.getElementById('lottie-animation'), // ID контейнера для анимации
 			renderer: 'svg',
