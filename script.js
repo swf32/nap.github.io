@@ -64,6 +64,10 @@ setTimeout(function() {
         setTimeout(function () {
             const lottie = document.getElementById('lottie-animation');
             lottie.remove();
+            const particles = document.getElementById('particles_container0');
+            particles.remove();
+            const js = document.getElementById('jsparticles');
+            js.remove();
         }, 100);
     }, 300);
 }, 900);
