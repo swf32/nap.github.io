@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Main Page</title>
+	<meta charset="utf-8">
+	<meta name="viewport"
+		  content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<meta name="format-detection" content="telephone=no"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="MobileOptimized" content="176"/>
+	<meta name="HandheldFriendly" content="True"/>
+	<meta name="robots" content="noindex,nofollow"/>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.14/lottie.min.js"></script>
+	<script src="https://telegram.org/js/telegram-web-app.js?1"></script>
+	<script>
+		function setThemeClass() {
+			document.documentElement.className = Telegram.WebApp.colorScheme;
+		}
+
+		Telegram.WebApp.onEvent('themeChanged', setThemeClass);
+		setThemeClass();
+
+	</script>
+	<link rel="stylesheet" type="text/css" href="default_style.css">
+	<link rel="stylesheet" type="text/css" href="saipr.css">
+</head>
+<body style="visibility: hidden">
+	<script type="text/javascript" src="telegram.js"></script>
+
+	<div class="table-container">
+		<table class="custom-table">
+			<tr>
+				<th></th>
+				<th>Продукт А</th>
+				<th>Продукт Б</th>
+			</tr>
+			<tr>
+				<td>Цена за единицу товара</td>
+				<td><input class="input-field" type="number" id="productAPrice" value="120" onchange="updateVariable('productAPrice', this.value)"></td>
+				<td><input class="input-field" type="number" id="productBPrice" value="360" onchange="updateVariable('productBPrice', this.value)"></td>
+			</tr>
+			<tr>
+				<td>Постоянные затраты на производство</td>
+				<td><input class="input-field" type="number" id="productAFixedCosts" value="105000" onchange="updateVariable('productAFixedCosts', this.value)"></td>
+				<td><input class="input-field" type="number" id="productBFixedCosts" value="210000" onchange="updateVariable('productBFixedCosts', this.value)"></td>
+			</tr>
+			<tr>
+				<td>Переменные затраты на производство</td>
+				<td><input class="input-field" type="number" id="productAVariableCosts" value="75" onchange="updateVariable('productAVariableCosts', this.value)"></td>
+				<td><input class="input-field" type="number" id="productBVariableCosts" value="195" onchange="updateVariable('productBVariableCosts', this.value)"></td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="table-container">
+		<table class="custom-table">
+			<tr>
+				<th rowspan="3" class="header-cell">Продукция</th>
+				<th colspan="3" class="header-cell">Состояния рынка</th>
+			</tr>
+			<tr>
+				<th colspan="3" class="header-cell">Уровень спроса</th>
+			</tr>
+			<tr>
+				<td class="sub-header-cell">S1</td>
+				<td class="sub-header-cell">S2</td>
+				<td class="sub-header-cell">S3</td>
+			</tr>
+			<tr>
+				<td class="data-cell">Продукт A</td>
+				<td><input class="input-field" type="number" value="5000" onchange="updateVariable('productAS1', this.value)"></td>
+				<td><input class="input-field" type="number" value="10000" onchange="updateVariable('productAS2', this.value)"></td>
+				<td><input class="input-field" type="number" value="20000" onchange="updateVariable('productAS3', this.value)"></td>
+			</tr>
+			<tr>
+				<td class="data-cell">Продукт B</td>
+				<td><input class="input-field" type="number" value="25000" onchange="updateVariable('productBS1', this.value)"></td>
+				<td><input class="input-field" type="number" value="20000" onchange="updateVariable('productBS2', this.value)"></td>
+				<td><input class="input-field" type="number" value="10000" onchange="updateVariable('productBS3', this.value)"></td>
+			</tr>
+			<tr>
+				<td class="data-cell">Вероятность события</td>
+				<td><input class="input-field" type="number" step="0.01" value="0.3" onchange="updateVariable('eventProbS1', this.value)"></td>
+				<td><input class="input-field" type="number" step="0.01" value="0.2" onchange="updateVariable('eventProbS2', this.value)"></td>
+				<td><input class="input-field" type="number" step="0.01" value="0.5" onchange="updateVariable('eventProbS3', this.value)"></td>
+			</tr>
+		</table>
+	</div>
+
+	<script>
+		// Example JavaScript function to update variables on input change
+		function updateVariable(variableName, value) {
+			// This is where you would update the variable, potentially sending the update to the server or updating the state in your application.
+			console.log(`Updated ${variableName}: ${value}`);
+			// For example:
+			// myAppData[variableName] = Number(value);
+		}
+	</script>
+
+	<section>
+		<a id="regular_link" href="index.html">Вернуться в меню</a>
+	</section>
+
+	<script src="https://webappcontent.telegram.org/js/jquery.min.js"></script>
+
+</body>
+</html>

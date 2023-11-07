@@ -1,0 +1,154 @@
+@font-face {
+    font-family: 'NeutralFace-Bold';
+    src: url('./content/NeutralFace-Bold.woff') format('woff');
+    /* Дополнительные свойства шрифта, если необходимо */
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    --color: --tg-theme-bg-color;
+    /*background: rgba(var(--tg-theme-bg-color, #000000), 0.9); z-index: 3;*/
+    background: var(--tg-theme-bg-color, #ffffff);
+    backdrop-filter: blur(4px);
+}
+
+.stories_block {
+    display: flex;
+    width: 100%;
+    padding-left: 12px;
+    padding-right: 12px;
+    box-sizing: border-box;
+    overflow-x: scroll;
+    gap: 8px;
+}
+.stories {
+    min-width: 104px;
+    height: 108px;
+    border-radius: 16px;
+    background: var(--tg-theme-button-color, #50a8eb);
+    opacity: 0;
+    transition: opacity 300ms, margin-top 300ms;
+    overflow: hidden;
+}
+.stories_block::-webkit-scrollbar {
+    display: none;
+}
+.main_module {
+    flex-shrink: 0;
+    position: relative;
+    margin: 12px;
+    height: 108px;
+    align-self: stretch;
+    border-radius: 16px;
+    background: var(--tg-theme-secondary-bg-color, #ffffff);
+    opacity: 0;
+    transition: opacity 300ms, margin-top 30ms;
+    overflow: hidden;
+    box-shadow: 0px 0px 24px 0px rgba(var(--tg-theme-bg-color, #ffffff), 0.50) inset;
+}
+.main_module span {
+    font-family: 'NeutralFace-Bold';
+    color: var(--tg-theme-text-color, #000000);
+    text-align: right;
+    leading-trim: both;
+    text-edge: cap;
+    font-size: 14px;
+    font-style: normal;
+    position: absolute;
+    right: 24px;
+    top: 30px;
+    font-weight: 700;
+    line-height: 125%; /* 17.5px */
+}
+
+.main_logo {
+    position: absolute;
+    top: 12px;
+    left: 64px;
+    width: 70px;
+    height: 85px;
+    fill: var(--tg-theme-text-color, #000000);
+}
+
+.main_grid {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.stories_img {
+    width: 104px;
+    height: 108px;
+    display: block;
+}
+
+#particles_container {
+    width: 100%;
+    height: 108px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    overflow: hidden;
+}
+
+#particles_container0 {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    overflow: hidden;
+    z-index: 5;
+}
+
+.particle {
+    position: absolute;
+    opacity: 30%;
+    will-change: transform, opacity;
+    fill: var(--tg-theme-text-color, #000000);
+}
+
+.table-container {
+    overflow-x: auto; /* Добавляет горизонтальную прокрутку */
+    color: var(--tg-theme-text-color, #000000);
+    margin-bottom: 24px;
+    font-size: 12px;
+    line-height: 16px;
+}
+
+.custom-table {
+    border-collapse: separate;
+    border-spacing: 8px; /* Отступы между ячейками */
+    width: 100%;
+    background-color: transparent;
+}
+
+.custom-table td, .custom-table th {
+    padding: 16px;
+    background-color: var(--tg-theme-secondary-bg-color, #ffffff);
+    border-radius: 16px;
+    text-align: left;
+}
+
+.input-field {
+    color: var(--tg-theme-text-color, #000000);
+    font-family: 'NeutralFace-Bold';
+    font-size: 12px;
+    border: none;
+    background: var(--tg-theme-secondary-bg-color, #ffffff);
+    border-radius: 16px;
+    text-align: center;
+    /*width: 100%; /* Чтобы input занимал всю ячейку */
+}
+
+.input-field:focus {
+    color: var(--tg-theme-text-color, #000000);
+    font-family: 'NeutralFace-Bold';
+    font-size: 12px;
+    outline: none;
+}
