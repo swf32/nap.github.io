@@ -148,6 +148,7 @@
     background: var(--tg-theme-secondary-bg-color, #ffffff);
     border-radius: 16px;
     text-align: center;
+    width: 80px;
     /*width: 100%; /* Чтобы input занимал всю ячейку */
 }
 

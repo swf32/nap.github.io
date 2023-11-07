@@ -69,21 +69,21 @@
 			</tr>
 			<tr>
 				<td class="data-cell">Продукт A</td>
-				<td><input class="input-field" type="number" inputmode="numeric" value="5000" onchange="updateVariable('productAS1', this.value)"></td>
-				<td><input class="input-field" type="number" inputmode="numeric" value="10000" onchange="updateVariable('productAS2', this.value)"></td>
-				<td><input class="input-field" type="number" inputmode="numeric" value="20000" onchange="updateVariable('productAS3', this.value)"></td>
+				<td><input class="input-field" id="productAS1" type="number" inputmode="numeric" value="5000" onchange="updateVariable('productAS1', this.value)"></td>
+				<td><input class="input-field" id="productAS2" type="number" inputmode="numeric" value="10000" onchange="updateVariable('productAS2', this.value)"></td>
+				<td><input class="input-field" id="productAS3" type="number" inputmode="numeric" value="20000" onchange="updateVariable('productAS3', this.value)"></td>
 			</tr>
 			<tr>
 				<td class="data-cell">Продукт B</td>
-				<td><input class="input-field" type="number" inputmode="numeric" value="25000" onchange="updateVariable('productBS1', this.value)"></td>
-				<td><input class="input-field" type="number" inputmode="numeric" value="20000" onchange="updateVariable('productBS2', this.value)"></td>
-				<td><input class="input-field" type="number" inputmode="numeric" value="10000" onchange="updateVariable('productBS3', this.value)"></td>
+				<td><input class="input-field" id="productBS1" type="number" inputmode="numeric" value="25000" onchange="updateVariable('productBS1', this.value)"></td>
+				<td><input class="input-field" id="productBS2" type="number" inputmode="numeric" value="20000" onchange="updateVariable('productBS2', this.value)"></td>
+				<td><input class="input-field" id="productBS3" type="number" inputmode="numeric" value="10000" onchange="updateVariable('productBS3', this.value)"></td>
 			</tr>
 			<tr>
 				<td class="data-cell">Вероятность события</td>
-				<td><input class="input-field" type="number" inputmode="numeric" step="0.01" value="0.3" onchange="updateVariable('eventProbS1', this.value)"></td>
-				<td><input class="input-field" type="number" inputmode="numeric" step="0.01" value="0.2" onchange="updateVariable('eventProbS2', this.value)"></td>
-				<td><input class="input-field" type="number" inputmode="numeric" step="0.01" value="0.5" onchange="updateVariable('eventProbS3', this.value)"></td>
+				<td><input class="input-field" id="eventProbS1" type="number" inputmode="numeric" step="0.01" value="0.3" onchange="updateVariable('eventProbS1', this.value)"></td>
+				<td><input class="input-field" id="eventProbS2" type="number" inputmode="numeric" step="0.01" value="0.2" onchange="updateVariable('eventProbS2', this.value)"></td>
+				<td><input class="input-field" id="eventProbS3" type="number" inputmode="numeric" step="0.01" value="0.5" onchange="updateVariable('eventProbS3', this.value)"></td>
 			</tr>
 		</table>
 	</div>
@@ -104,15 +104,15 @@
 			</tr>
 			<tr>
 				<td class="data-cell">Продукт A</td>
-				<td><input class="input-field" type="number" inputmode="numeric" value="5000" onchange="updateVariable('firmproductAS1', this.value)"></td>
-				<td><input class="input-field" type="number" inputmode="numeric" value="10000" onchange="updateVariable('firmproductAS2', this.value)"></td>
-				<td><input class="input-field" type="number" inputmode="numeric" value="20000" onchange="updateVariable('firmproductAS3', this.value)"></td>
+				<td><input class="input-field" id="firmproductAS1" type="number" inputmode="numeric" value="5000" onchange="updateVariable('firmproductAS1', this.value)"></td>
+				<td><input class="input-field" id="firmproductAS2" type="number" inputmode="numeric" value="10000" onchange="updateVariable('firmproductAS2', this.value)"></td>
+				<td><input class="input-field" id="firmproductAS3" type="number" inputmode="numeric" value="20000" onchange="updateVariable('firmproductAS3', this.value)"></td>
 			</tr>
 			<tr>
 				<td class="data-cell">Продукт B</td>
-				<td><input class="input-field" type="number" inputmode="numeric" value="25000" onchange="updateVariable('firmproductBS1', this.value)"></td>
-				<td><input class="input-field" type="number" inputmode="numeric" value="40000" onchange="updateVariable('firmproductBS2', this.value)"></td>
-				<td><input class="input-field" type="number" inputmode="numeric" value="30000" onchange="updateVariable('firmproductBS3', this.value)"></td>
+				<td><input class="input-field" id="firmproductBS1" type="number" inputmode="numeric" value="25000" onchange="updateVariable('firmproductBS1', this.value)"></td>
+				<td><input class="input-field" id="firmproductBS2" type="number" inputmode="numeric" value="40000" onchange="updateVariable('firmproductBS2', this.value)"></td>
+				<td><input class="input-field" id="firmproductBS3" type="number" inputmode="numeric" value="30000" onchange="updateVariable('firmproductBS3', this.value)"></td>
 			</tr>
 		</table>
 	</div>
@@ -181,19 +181,32 @@
 			var L9 = parseFloat(document.getElementById('firmproductBS1').value);
 			var M9 = parseFloat(document.getElementById('firmproductBS2').value);
 			var N9 = parseFloat(document.getElementById('firmproductBS3').value);
+			console.log(`Updated ${G8}: ${L8}`);
 
 
 			// Предположим, что у нас есть какая-то логика для расчёта новых значений:
 			// Это просто примеры, вам нужно будет заменить их на реальные расчёты.
-			var newValueForX1S1 = parseFloat(value) * 2; // Пример расчёта
+			var newValueForX1S1 = C6 * Math.min(L8, G8) - (C7 + C8 * L8) + D6 * Math.min(G9, L9) - (D7 + D8 * L9);
 			var newValueForX1S2 = parseFloat(value) / 2; // Пример расчёта
 			var newValueForX1S3 = -parseFloat(value); // Пример расчёта
+			var newValueForX2S1 = parseFloat(value) * 2; // Пример расчёта
+			var newValueForX2S2 = parseFloat(value) / 2; // Пример расчёта
+			var newValueForX2S3 = -parseFloat(value); // Пример расчёта
+			var newValueForX3S1 = parseFloat(value) * 2; // Пример расчёта
+			var newValueForX3S2 = parseFloat(value) / 2; // Пример расчёта
+			var newValueForX3S3 = -parseFloat(value); // Пример расчёта
 			// И так далее для каждой переменной...
 
 			// Обновляем значения в HTML с помощью идентификаторов элементов
 			document.getElementById('incomeproductX1S1').textContent = newValueForX1S1.toFixed(0);
 			document.getElementById('incomeproductX1S2').textContent = newValueForX1S2.toFixed(0);
 			document.getElementById('incomeproductX1S3').textContent = newValueForX1S3.toFixed(0);
+			document.getElementById('incomeproductX2S1').textContent = newValueForX2S1.toFixed(0);
+			document.getElementById('incomeproductX2S2').textContent = newValueForX2S2.toFixed(0);
+			document.getElementById('incomeproductX2S3').textContent = newValueForX2S3.toFixed(0);
+			document.getElementById('incomeproductX3S1').textContent = newValueForX3S1.toFixed(0);
+			document.getElementById('incomeproductX3S2').textContent = newValueForX3S2.toFixed(0);
+			document.getElementById('incomeproductX3S3').textContent = newValueForX3S3.toFixed(0);
 			// И так далее для каждой переменной...
 		}
 	</script>
