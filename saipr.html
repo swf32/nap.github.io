@@ -31,24 +31,24 @@
 	<div class="table-container">
 		<table class="custom-table">
 			<tr>
-				<th></th>
+				<th style="color: var(--tg-theme-button-color, #41da26);">Начальные данные</th>
 				<th>Продукт А</th>
 				<th>Продукт Б</th>
 			</tr>
 			<tr>
 				<td>Цена за единицу товара</td>
-				<td><input class="input-field" type="number" id="productAPrice" value="120" onchange="updateVariable('productAPrice', this.value)"></td>
-				<td><input class="input-field" type="number" id="productBPrice" value="360" onchange="updateVariable('productBPrice', this.value)"></td>
+				<td><input class="input-field" type="number" id="productAPrice" inputmode="numeric" value="120" onchange="updateVariable('productAPrice', this.value)"></td>
+				<td><input class="input-field" type="number" id="productBPrice" inputmode="numeric" value="360" onchange="updateVariable('productBPrice', this.value)"></td>
 			</tr>
 			<tr>
 				<td>Постоянные затраты на производство</td>
-				<td><input class="input-field" type="number" id="productAFixedCosts" value="105000" onchange="updateVariable('productAFixedCosts', this.value)"></td>
-				<td><input class="input-field" type="number" id="productBFixedCosts" value="210000" onchange="updateVariable('productBFixedCosts', this.value)"></td>
+				<td><input class="input-field" type="number" id="productAFixedCosts" inputmode="numeric" value="105000" onchange="updateVariable('productAFixedCosts', this.value)"></td>
+				<td><input class="input-field" type="number" id="productBFixedCosts" inputmode="numeric" value="210000" onchange="updateVariable('productBFixedCosts', this.value)"></td>
 			</tr>
 			<tr>
 				<td>Переменные затраты на производство</td>
-				<td><input class="input-field" type="number" id="productAVariableCosts" value="75" onchange="updateVariable('productAVariableCosts', this.value)"></td>
-				<td><input class="input-field" type="number" id="productBVariableCosts" value="195" onchange="updateVariable('productBVariableCosts', this.value)"></td>
+				<td><input class="input-field" type="number" id="productAVariableCosts" inputmode="numeric" value="75" onchange="updateVariable('productAVariableCosts', this.value)"></td>
+				<td><input class="input-field" type="number" id="productBVariableCosts" inputmode="numeric" value="195" onchange="updateVariable('productBVariableCosts', this.value)"></td>
 			</tr>
 		</table>
 	</div>
@@ -57,7 +57,7 @@
 		<table class="custom-table">
 			<tr>
 				<th rowspan="3" class="header-cell">Продукция</th>
-				<th colspan="3" class="header-cell">Состояния рынка</th>
+				<th colspan="3" class="header-cell" style="color: var(--tg-theme-button-color, #41da26);">Состояния рынка</th>
 			</tr>
 			<tr>
 				<th colspan="3" class="header-cell">Уровень спроса</th>
@@ -69,21 +69,85 @@
 			</tr>
 			<tr>
 				<td class="data-cell">Продукт A</td>
-				<td><input class="input-field" type="number" value="5000" onchange="updateVariable('productAS1', this.value)"></td>
-				<td><input class="input-field" type="number" value="10000" onchange="updateVariable('productAS2', this.value)"></td>
-				<td><input class="input-field" type="number" value="20000" onchange="updateVariable('productAS3', this.value)"></td>
+				<td><input class="input-field" type="number" inputmode="numeric" value="5000" onchange="updateVariable('productAS1', this.value)"></td>
+				<td><input class="input-field" type="number" inputmode="numeric" value="10000" onchange="updateVariable('productAS2', this.value)"></td>
+				<td><input class="input-field" type="number" inputmode="numeric" value="20000" onchange="updateVariable('productAS3', this.value)"></td>
 			</tr>
 			<tr>
 				<td class="data-cell">Продукт B</td>
-				<td><input class="input-field" type="number" value="25000" onchange="updateVariable('productBS1', this.value)"></td>
-				<td><input class="input-field" type="number" value="20000" onchange="updateVariable('productBS2', this.value)"></td>
-				<td><input class="input-field" type="number" value="10000" onchange="updateVariable('productBS3', this.value)"></td>
+				<td><input class="input-field" type="number" inputmode="numeric" value="25000" onchange="updateVariable('productBS1', this.value)"></td>
+				<td><input class="input-field" type="number" inputmode="numeric" value="20000" onchange="updateVariable('productBS2', this.value)"></td>
+				<td><input class="input-field" type="number" inputmode="numeric" value="10000" onchange="updateVariable('productBS3', this.value)"></td>
 			</tr>
 			<tr>
 				<td class="data-cell">Вероятность события</td>
-				<td><input class="input-field" type="number" step="0.01" value="0.3" onchange="updateVariable('eventProbS1', this.value)"></td>
-				<td><input class="input-field" type="number" step="0.01" value="0.2" onchange="updateVariable('eventProbS2', this.value)"></td>
-				<td><input class="input-field" type="number" step="0.01" value="0.5" onchange="updateVariable('eventProbS3', this.value)"></td>
+				<td><input class="input-field" type="number" inputmode="numeric" step="0.01" value="0.3" onchange="updateVariable('eventProbS1', this.value)"></td>
+				<td><input class="input-field" type="number" inputmode="numeric" step="0.01" value="0.2" onchange="updateVariable('eventProbS2', this.value)"></td>
+				<td><input class="input-field" type="number" inputmode="numeric" step="0.01" value="0.5" onchange="updateVariable('eventProbS3', this.value)"></td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="table-container">
+		<table class="custom-table">
+			<tr>
+				<th rowspan="3" class="header-cell">Продукция</th>
+				<th colspan="3" class="header-cell" style="color: var(--tg-theme-button-color, #41da26);">Стратегия фирмы</th>
+			</tr>
+			<tr>
+				<th colspan="3" class="header-cell">Объём производства</th>
+			</tr>
+			<tr>
+				<td class="sub-header-cell">S1</td>
+				<td class="sub-header-cell">S2</td>
+				<td class="sub-header-cell">S3</td>
+			</tr>
+			<tr>
+				<td class="data-cell">Продукт A</td>
+				<td><input class="input-field" type="number" inputmode="numeric" value="5000" onchange="updateVariable('firmproductAS1', this.value)"></td>
+				<td><input class="input-field" type="number" inputmode="numeric" value="10000" onchange="updateVariable('firmproductAS2', this.value)"></td>
+				<td><input class="input-field" type="number" inputmode="numeric" value="20000" onchange="updateVariable('firmproductAS3', this.value)"></td>
+			</tr>
+			<tr>
+				<td class="data-cell">Продукт B</td>
+				<td><input class="input-field" type="number" inputmode="numeric" value="25000" onchange="updateVariable('firmproductBS1', this.value)"></td>
+				<td><input class="input-field" type="number" inputmode="numeric" value="40000" onchange="updateVariable('firmproductBS2', this.value)"></td>
+				<td><input class="input-field" type="number" inputmode="numeric" value="30000" onchange="updateVariable('firmproductBS3', this.value)"></td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="table-container">
+		<table class="custom-table">
+			<tr>
+				<th rowspan="3" class="header-cell">Стратегии фирмы</th>
+				<th colspan="3" class="header-cell" style="color: var(--tg-theme-button-color, #41da26);">Прибыль Uij</th>
+			</tr>
+			<tr>
+				<th colspan="3" class="header-cell">Состояние рынка</th>
+			</tr>
+			<tr>
+				<td class="sub-header-cell">S1</td>
+				<td class="sub-header-cell">S2</td>
+				<td class="sub-header-cell">S3</td>
+			</tr>
+			<tr>
+				<td class="data-cell">X1</td>
+				<td><span id="incomeproductX1S1">4035000</span></td>
+				<td><span id="incomeproductX1S2">2235000</span></td>
+				<td><span id="incomeproductX1S3">-1365000</span></td>
+			</tr>
+			<tr>
+				<td class="data-cell">X2</td>
+				<td><span id="incomeproductX2S1">735000</span></td>
+				<td><span id="incomeproductX2S2">-465000</span></td>
+				<td><span id="incomeproductX2S3">-406500</span></td>
+			</tr>
+			<tr>
+				<td class="data-cell">X3</td>
+				<td><span id="incomeproductX3S1">1935000</span></td>
+				<td><span id="incomeproductX3S2">735000</span></td>
+				<td><span id="incomeproductX3S3">-1665000</span></td>
 			</tr>
 		</table>
 	</div>
@@ -95,6 +159,42 @@
 			console.log(`Updated ${variableName}: ${value}`);
 			// For example:
 			// myAppData[variableName] = Number(value);
+
+			var C6 = parseFloat(document.getElementById('productAPrice').value);
+			var C7 = parseFloat(document.getElementById('productAFixedCosts').value);
+			var C8 = parseFloat(document.getElementById('productAVariableCosts').value);
+			var D6 = parseFloat(document.getElementById('productBPrice').value);
+			var D7 = parseFloat(document.getElementById('productBFixedCosts').value);
+			var D8 = parseFloat(document.getElementById('productBVariableCosts').value);
+			var G8 = parseFloat(document.getElementById('productAS1').value);
+			var H8 = parseFloat(document.getElementById('productAS2').value);
+			var I8 = parseFloat(document.getElementById('productAS3').value);
+			var G9 = parseFloat(document.getElementById('productBS1').value);
+			var H9 = parseFloat(document.getElementById('productBS2').value);
+			var I9 = parseFloat(document.getElementById('productBS3').value);
+			var G10 = parseFloat(document.getElementById('eventProbS1').value);
+			var H10 = parseFloat(document.getElementById('eventProbS2').value);
+			var I10 = parseFloat(document.getElementById('eventProbS3').value);
+			var L8 = parseFloat(document.getElementById('firmproductAS1').value);
+			var M8 = parseFloat(document.getElementById('firmproductAS2').value);
+			var N8 = parseFloat(document.getElementById('firmproductAS3').value);
+			var L9 = parseFloat(document.getElementById('firmproductBS1').value);
+			var M9 = parseFloat(document.getElementById('firmproductBS2').value);
+			var N9 = parseFloat(document.getElementById('firmproductBS3').value);
+
+
+			// Предположим, что у нас есть какая-то логика для расчёта новых значений:
+			// Это просто примеры, вам нужно будет заменить их на реальные расчёты.
+			var newValueForX1S1 = parseFloat(value) * 2; // Пример расчёта
+			var newValueForX1S2 = parseFloat(value) / 2; // Пример расчёта
+			var newValueForX1S3 = -parseFloat(value); // Пример расчёта
+			// И так далее для каждой переменной...
+
+			// Обновляем значения в HTML с помощью идентификаторов элементов
+			document.getElementById('incomeproductX1S1').textContent = newValueForX1S1.toFixed(0);
+			document.getElementById('incomeproductX1S2').textContent = newValueForX1S2.toFixed(0);
+			document.getElementById('incomeproductX1S3').textContent = newValueForX1S3.toFixed(0);
+			// И так далее для каждой переменной...
 		}
 	</script>
 

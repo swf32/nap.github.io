@@ -121,6 +121,10 @@
     line-height: 16px;
 }
 
+.table-container::-webkit-scrollbar {
+    display: none;
+}
+
 .custom-table {
     border-collapse: separate;
     border-spacing: 8px; /* Отступы между ячейками */
@@ -132,7 +136,8 @@
     padding: 16px;
     background-color: var(--tg-theme-secondary-bg-color, #ffffff);
     border-radius: 16px;
-    text-align: left;
+    font-size: 12px;
+    text-align: center;
 }
 
 .input-field {
