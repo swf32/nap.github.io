@@ -24,11 +24,14 @@
 	</script>
 	<link rel="stylesheet" type="text/css" href="default_style.css">
 	<link rel="stylesheet" type="text/css" href="saipr.css">
+
 </head>
 <body style="visibility: hidden; overflow-y: auto; width: 100%; height: 100%">
 	<script type="text/javascript" src="telegram.js"></script>
 
+
 	<div class="table-container">
+		<button class="open-table" style="margin: 0px">Начальные данные</button>
 		<table class="custom-table">
 			<tr>
 				<th style="color: var(--tg-theme-button-color, #41da26);">Начальные данные</th>
@@ -54,6 +57,7 @@
 	</div>
 
 	<div class="table-container">
+		<button class="open-table" style="margin: 0px">Состояния рынка</button>
 		<table class="custom-table">
 			<tr>
 				<th rowspan="3" class="header-cell">Продукция</th>
@@ -89,6 +93,7 @@
 	</div>
 
 	<div class="table-container">
+		<button class="open-table" style="margin: 0px">Стратегия фирмы</button>
 		<table class="custom-table">
 			<tr>
 				<th rowspan="3" class="header-cell">Продукция</th>
@@ -118,6 +123,7 @@
 	</div>
 
 	<div class="table-container">
+		<button class="open-table" style="margin: 0px">Прибыль Uij</button>
 		<table class="custom-table">
 			<tr>
 				<th rowspan="3" class="header-cell">Стратегии фирмы</th>
@@ -149,11 +155,26 @@
 				<td><span id="incomeproductX3S2">735000</span></td>
 				<td><span id="incomeproductX3S3">-1665000</span></td>
 			</tr>
+			<tr>
+				<td class="data-cell">Вероятность состояния рынка</td>
+				<td><span id="incomeproductX4S1">0,3</span></td>
+				<td><span id="incomeproductX4S2">0,2</span></td>
+				<td><span id="incomeproductX4S3">0,5</span></td>
+			</tr>
 		</table>
 	</div>
 
 	<script>
 		// Example JavaScript function to update variables on input change
+
+		document.querySelectorAll('.open-table').forEach(button => {
+			button.addEventListener('click', function() {
+				var table = this.nextElementSibling; // Получаем следующий элемент после кнопки, который должен быть таблицей
+				table.style.display = table.style.display === 'none' ? '' : 'none'; // Переключаем видимость
+			});
+		});
+
+
 		function updateVariable(variableName, value) {
 			// This is where you would update the variable, potentially sending the update to the server or updating the state in your application.
 			console.log(`Updated ${variableName}: ${value}`);
@@ -187,14 +208,14 @@
 			// Предположим, что у нас есть какая-то логика для расчёта новых значений:
 			// Это просто примеры, вам нужно будет заменить их на реальные расчёты.
 			var newValueForX1S1 = C6 * Math.min(L8, G8) - (C7 + C8 * L8) + D6 * Math.min(G9, L9) - (D7 + D8 * L9);
-			var newValueForX1S2 = parseFloat(value) / 2; // Пример расчёта
-			var newValueForX1S3 = -parseFloat(value); // Пример расчёта
-			var newValueForX2S1 = parseFloat(value) * 2; // Пример расчёта
-			var newValueForX2S2 = parseFloat(value) / 2; // Пример расчёта
-			var newValueForX2S3 = -parseFloat(value); // Пример расчёта
-			var newValueForX3S1 = parseFloat(value) * 2; // Пример расчёта
-			var newValueForX3S2 = parseFloat(value) / 2; // Пример расчёта
-			var newValueForX3S3 = -parseFloat(value); // Пример расчёта
+			var newValueForX1S2 = C6 * Math.min(H8, L8) - (C7 + C8 * L8) + D6 * Math.min(H9, L9) - (D7 + D8 * L9);
+			var newValueForX1S3 = C6 * Math.min(I8, L8) - (C7 + C8 * L8) + D6 * Math.min(I9, L9) - (D7 + D8 * L9);
+			var newValueForX2S1 = C6 * Math.min(G8, M8) - (C7 + C8 * M8) + D6 * Math.min(G9, M9) - (D7 + D8 * M9);
+			var newValueForX2S2 = C6 * Math.min(H8, M8) - (C7 + C8 * M8) + D6 * Math.min(H9, M9) - (D7 + D8 * M9);
+			var newValueForX2S3 = C6 * Math.min(I8, M8) - (C7 + C8 * M8) + D6 * Math.min(I9, M9) - (D7 + D8 * M9);
+			var newValueForX3S1 = C6 * Math.min(G8, N8) - (C7 + C8 * N8) + D6 * Math.min(G9, N9) - (D7 + D8 * N9);
+			var newValueForX3S2 = C6 * Math.min(H8, N8) - (C7 + C8 * N8) + D6 * Math.min(H9, N9) - (D7 + D8 * N9);
+			var newValueForX3S3 = C6 * Math.min(I8, N8) - (C7 + C8 * N8) + D6 * Math.min(I9, N9) - (D7 + D8 * N9);
 			// И так далее для каждой переменной...
 
 			// Обновляем значения в HTML с помощью идентификаторов элементов
