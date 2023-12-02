@@ -1,68 +1,178 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-	<title>Main Page</title>
-	<meta charset="utf-8">
-	<meta name="viewport"
-		  content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-	<meta name="format-detection" content="telephone=no"/>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-	<meta name="MobileOptimized" content="176"/>
-	<meta name="HandheldFriendly" content="True"/>
-	<meta name="robots" content="noindex,nofollow"/>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.14/lottie.min.js"></script>
-	<script src="https://telegram.org/js/telegram-web-app.js?1"></script>
-	<script>
-		function setThemeClass() {
-			document.documentElement.className = Telegram.WebApp.colorScheme;
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Котлоагрегат</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			text-align: center;
 		}
 
-		Telegram.WebApp.onEvent('themeChanged', setThemeClass);
-		setThemeClass();
+		.container {
+			width: 80%;
+			margin: 0 auto;
+		}
 
-	</script>
-	<link rel="stylesheet" type="text/css" href="default_style.css">
-	<link rel="stylesheet" type="text/css" href="custom_style.css">
+		.controls button {
+			margin: 4px;
+			width: 120px;
+			padding: 8px;
+			font-size: 14px;
+		}
+
+		.status {
+			margin-top: 12px;
+		}
+
+		#alerts {
+			color: red;
+			margin-top: 12px;
+		}
+
+	</style>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body style="visibility: hidden; margin: 12px">
-	<script type="text/javascript" src="telegram.js"></script>
-	<div id="temperature" style="display: flex; justify-content: center; flex-direction: column; align-items: center; background-color: var(--tg-theme-bg-color, #ffffff); border-radius: 8px; transition: background-color 0.3s">
-		<p style="margin-top: 20px; margin-bottom: 4px; font-size: 10px; opacity: 50%; color: color: black">ТЕМПЕРАТУРА</p>
-		<p id="tempdata" style="margin-top: 4px; margin-bottom: 20px; color: black">88</p>
+<body>
+<div class="container">
+	<h1>Управление котлоагрегатом</h1>
+	<div class="controls">
+		<button id="increase-temp">Повысить температуру</button>
+		<button id="decrease-temp">Понизить температуру</button>
+		<button id="increase-pressure">Повысить давление</button>
+		<button id="decrease-pressure">Понизить давление</button>
+		<button id="increase-volume">Увеличить объем воды</button>
+		<button id="decrease-volume">Уменьшить объем воды</button>
 	</div>
-	<div id="pressure" style="display: flex; justify-content: center; flex-direction: column; align-items: center; background-color: var(--tg-theme-bg-color, #ffffff); margin-top: 8px; border-radius: 8px; transition: background-color 0.3s">
-		<p style="margin-top: 20px; margin-bottom: 4px; font-size: 10px; opacity: 50%; color: black">ДАВЛЕНИЕ</p>
-		<p id="pressdata" style="margin-top: 4px; margin-bottom: 20px; color: black">500</p>
+	<div class="status">
+		<h2>Статус:</h2>
+		<div id="temperature">Температура: 20°C</div>
+		<div id="pressure">Давление: 1013 Па</div>
+		<div id="volume">Объем воды: 1000 литров</div>
+		<div id="alerts"></div>
+		<canvas id="temp-chart"></canvas>
+		<canvas id="pressure-chart"></canvas>
+		<canvas id="volume-chart"></canvas>
 	</div>
-	<div id="water" style="display: flex; justify-content: center; flex-direction: column; align-items: center; background-color: var(--tg-theme-bg-color, #ffffff); margin-top: 8px; border-radius: 8px; transition: background-color 0.3s">
-		<p style="margin-top: 20px; margin-bottom: 4px; font-size: 10px; opacity: 50%; color: black">УРОВЕНЬ ВОДЫ</p>
-		<p id="waterdata" style="margin-top: 4px; margin-bottom: 20px; color: black">50%</p>
-	</div>
-	<div id="efficiency" style="display: flex; justify-content: center; flex-direction: column; align-items: center; var(--tg-theme-secondary-bg-color, #ffffff); margin-top: 8px; border-radius: 8px; transition: background-color 0.3s">
-		<p style="margin-top: 20px; margin-bottom: 4px; font-size: 10px; opacity: 50%; color: black">КПД</p>
-		<p id="efficiencydata" style="margin-top: 4px; margin-bottom: 20px; color: black">50%</p>
-	</div>
+</div>
+<script>
+	let temperature = 20;
+	let pressure = 1013;
+	let volume = 1000; // начальный объем воды в литрах
 
-	<label for="pauseSlider">Пауза между обновлениями (секунды): <span id="pauseLabel">2</span></label>
-	<input type="range" id="pauseSlider" min="1" max="10" value="2">
-	<br>
-	<br>
-	<label for="updateIntervalSlider">Время обновления (секунды): <span id="updateIntervalLabel">10</span></label>
-	<input type="range" id="updateIntervalSlider" min="1" max="15" value="10">
-	<br>
-	<br>
-	<label for="updateSpeedSlider">Скорость обновления значений (кратность изменения): <span id="updateRateLabel">1</span></label>
-	<input type="range" id="updateSpeedSlider" min="100" max="5000" value="1000">
+	// Создание контекстов для каждого графика
+	const tempChartCtx = document.getElementById('temp-chart').getContext('2d');
+	const pressureChartCtx = document.getElementById('pressure-chart').getContext('2d');
+	const volumeChartCtx = document.getElementById('volume-chart').getContext('2d');
 
+	// Функция для создания графика
+	function createChart(ctx, label, color) {
+		return new Chart(ctx, {
+			type: 'line',
+			data: {
+				labels: Array.from({ length: 10 }, (_, i) => i),
+				datasets: [{
+					label: label,
+					backgroundColor: color + '0.2)',
+					borderColor: color + '1)',
+					data: Array(10).fill(0),
+				}]
+			},
+			options: {
+				scales: {
+					y: {
+						beginAtZero: false
+					}
+				}
+			}
+		});
+	}
 
-	<script type="text/javascript" src="kozlova.js"></script>
+	// Создание графиков
+	const tempChart = createChart(tempChartCtx, 'Температура (°C)', 'rgba(255, 99, 132, ');
+	const pressureChart = createChart(pressureChartCtx, 'Давление (Па)', 'rgba(54, 162, 235, ');
+	const volumeChart = createChart(volumeChartCtx, 'Объем воды (литры)', 'rgba(75, 192, 192, ');
 
-	<section>
-		<a id="regular_link" href="index.html">Вернуться в меню</a>
-	</section>
+	document.getElementById('increase-temp').addEventListener('click', () => modifyTemperature(5));
+	document.getElementById('decrease-temp').addEventListener('click', () => modifyTemperature(-5));
+	document.getElementById('increase-pressure').addEventListener('click', () => modifyPressure(50));
+	document.getElementById('decrease-pressure').addEventListener('click', () => modifyPressure(-50));
+	document.getElementById('increase-volume').addEventListener('click', () => modifyVolume(100));
+	document.getElementById('decrease-volume').addEventListener('click', () => modifyVolume(-100));
 
-	<script src="https://webappcontent.telegram.org/js/jquery.min.js"></script>
+	function modifyTemperature(change) {
+		temperature += change;
+		updateStatus();
+	}
 
+	function modifyPressure(change) {
+		pressure += change;
+		updateStatus();
+	}
+
+	function modifyVolume(change) {
+		volume = Math.max(0, volume + change); // Объем не может быть меньше 0
+		updateStatus();
+	}
+
+	function updateStatus() {
+		document.getElementById('temperature').textContent = 'Температура: ' + temperature.toFixed(1) + '°C';
+		document.getElementById('pressure').textContent = 'Давление: ' + pressure.toFixed(1) + ' Па';
+		document.getElementById('volume').textContent = 'Объем воды: ' + volume.toFixed(1) + ' литров';
+		checkForWarnings();
+		updateCharts();
+	}
+
+	function checkForWarnings() {
+		let alerts = '';
+		if (temperature > 100 || temperature < 0) {
+			alerts += 'Внимание: Температура вне нормального диапазона!\n';
+		}
+		if (pressure > 2000 || pressure < 900) {
+			alerts += 'Внимание: Давление вне нормального диапазона!\n';
+		}
+		if (volume > 2000) {
+			alerts += 'Внимание: Объем воды слишком велик!\n';
+		}
+		if (volume < 100) {
+			alerts += 'Внимание: Объем воды слишком мал!';
+		}
+		document.getElementById('alerts').textContent = alerts;
+	}
+
+	function updateCharts() {
+		updateChart(tempChart, temperature);
+		updateChart(pressureChart, pressure);
+		updateChart(volumeChart, volume);
+	}
+
+	function updateChart(chart, value) {
+		chart.data.datasets[0].data.push(value);
+		if (chart.data.datasets[0].data.length > 10) {
+			chart.data.datasets[0].data.shift();
+		}
+		chart.update();
+	}
+
+	setInterval(() => {
+		temperature += Math.random() * 4 - 2;
+		pressure += Math.random() * 100 - 50;
+		volume += Math.random() * 200 - 100;
+
+		let volumeEffect = volume / 1000;
+		temperature += volumeEffect * (Math.random() * 2 - 1);
+		pressure += volumeEffect * (Math.random() * 50 - 25);
+
+		updateStatus();
+	}, 2000);
+
+	setInterval(() => {
+		temperature += Math.random() * 20 - 10;
+		pressure += Math.random() * 500 - 250;
+		updateStatus();
+	}, 10000);
+
+</script>
 </body>
 </html>
