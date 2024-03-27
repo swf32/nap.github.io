@@ -44,23 +44,22 @@
 
 <script>
 	document.addEventListener('DOMContentLoaded', function() {
-		var videos = document.querySelectorAll('.video');
-		var images = document.querySelectorAll('.image');
+		var containers = document.querySelectorAll('.container');
 
-		videos.forEach(function(video, index) {
+		containers.forEach(function(container) {
+			var video = container.querySelector('.video');
+			var image = container.querySelector('.image');
+
 			// Проверяем, можно ли воспроизвести видео автоматически
 			var playPromise = video.play();
 
 			if (playPromise !== undefined) {
 				playPromise.then(_ => {
-					// Autoplay начало воспроизведения
-					video.addEventListener('canplaythrough', function() {
-						images[index].style.display = 'none';
-					});
+					// Autoplay работает, удаляем изображение
+					if (image) image.remove();
 				}).catch(error => {
-					// Autoplay не работает, заменяем на изображение
-					video.style.display = 'none';
-					images[index].style.display = 'block';
+					// Autoplay не работает, удаляем видео
+					if (video) video.remove();
 				});
 			}
 		});
