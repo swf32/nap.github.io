@@ -54,6 +54,9 @@
 			if (playPromise !== undefined) {
 				playPromise.then(_ => {
 					// Autoplay начало воспроизведения
+					video.addEventListener('canplaythrough', function() {
+						images[index].style.display = 'none';
+					});
 				}).catch(error => {
 					// Autoplay не работает, заменяем на изображение
 					video.style.display = 'none';
