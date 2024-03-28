@@ -40,12 +40,6 @@
 	<img class="image" src="photo2.png" alt="Fallback Image">
 </div>
 
-<video class="video3" playsinline autoplay muted loop>
-	<source src="video2.mp4" type="video/mp4">
-	Your browser does not support the video tag.
-</video>
-
-<!-- И ещё больше контейнеров, если надо -->
 
 <script>
 	document.addEventListener('DOMContentLoaded', function() {
@@ -55,35 +49,16 @@
 			var video = container.querySelector('.video');
 			var image = container.querySelector('.image');
 
+			// Проверяем, можно ли воспроизвести видео автоматически
 			var playPromise = video.play();
 
 			if (playPromise !== undefined) {
 				playPromise.then(_ => {
-					// Если autoplay работает, удаляем изображение
+					// Autoplay работает, удаляем изображение
 					if (image) image.remove();
 				}).catch(error => {
-					// Autoplay не работает, устанавливаем флаг
-					let videoPlayed = false;
-
-					// Добавляем временный обработчик для проверки воспроизведения
-					const onVideoPlay = () => {
-						videoPlayed = true;
-						// Видео начало воспроизводиться, удаляем изображение
-						if (image) image.remove();
-						// Удаляем обработчик, чтобы не вызывать его повторно
-						video.removeEventListener('timeupdate', onVideoPlay);
-					};
-
-					video.addEventListener('timeupdate', onVideoPlay);
-
-					// Устанавливаем таймаут для проверки, было ли видео воспроизведено
-					setTimeout(() => {
-						if (!videoPlayed) {
-							// Видео так и не начало воспроизводиться, удаляем видео
-							if (video) video.remove();
-							video.removeEventListener('timeupdate', onVideoPlay);
-						}
-					}, 1000); // Устанавливаем таймаут достаточно долго, чтобы убедиться, что видео начнет воспроизводиться, если это возможно
+					// Autoplay не работает, удаляем видео
+					if (video) video.remove();
 				});
 			}
 		});
