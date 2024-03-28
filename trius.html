@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Video Player</title>
+	<title>Test</title>
 	<style>
 		.container {
 			width: 300px;
@@ -49,15 +49,15 @@
 			var video = container.querySelector('.video');
 			var image = container.querySelector('.image');
 
-			// Проверяем, можно ли воспроизвести видео автоматически
+			// Надо запустить видео для проверки ниже
 			var playPromise = video.play();
 
 			if (playPromise !== undefined) {
 				playPromise.then(_ => {
-					// Autoplay работает, удаляем изображение
+					// Autoplay работает => удаляем имагу
 					if (image) image.remove();
 				}).catch(error => {
-					// Autoplay не работает, удаляем видео
+					// Autoplay не работает => удаляем видео
 					if (video) video.remove();
 				});
 			}
